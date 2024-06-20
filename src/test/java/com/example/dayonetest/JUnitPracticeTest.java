@@ -1,0 +1,76 @@
+package com.example.dayonetest;
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+public class JUnitPracticeTest {
+    @Test
+    public void assertEqualsTest(){
+        String expect = "Something";
+        String actual = "Something";
+        Assertions.assertEquals(expect, actual);
+    }
+
+    @Test
+    public void assertNotEqualsTest(){
+        String expect = "Something";
+        String actual = "Hi";
+
+        Assertions.assertNotEquals(expect, actual);
+    }
+
+    @Test
+    public void assetTrueTest(){
+        Integer a = 10;
+        Integer b = 10;
+
+        Assertions.assertTrue(a.equals(b));
+    }
+
+    @Test
+    public void assertFalseTest(){
+        Integer a = 10;
+        Integer b = 20;
+
+        Assertions.assertFalse(a.equals(b));
+    }
+
+    @Test
+    public void assertThrowsTest(){
+        Assertions.assertThrows(RuntimeException.class, () -> {
+            throw new RuntimeException("임의 에러");
+        });
+    }
+
+    @Test
+    public void assertNotNullTest(){
+        String value = "Hi";
+        Assertions.assertNotNull(value);
+    }
+
+    @Test
+    public void assertIterableEquals(){
+        List<Integer> list1 = List.of(1,2);
+        List<Integer> list2 = List.of(1,2);
+
+        Assertions.assertIterableEquals(list1, list2);
+    }
+
+    @Test
+    public void assertAllTest(){
+        String expect = "Something";
+        String actual = "Something";
+
+        List<Integer> list1 = List.of(1,2);
+        List<Integer> list2 = List.of(1,2);
+
+        Assertions.assertAll("Assert all", List.of(
+                () -> {Assertions.assertEquals(expect, actual);},
+                () -> {Assertions.assertIterableEquals(list1, list2);}
+        ));
+    }
+
+}
