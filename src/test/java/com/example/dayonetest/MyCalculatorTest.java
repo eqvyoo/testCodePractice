@@ -1,11 +1,13 @@
 package com.example.dayonetest;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class MyCalculatorTest {
 
     @Test
+    @DisplayName("My Calculator 덧셈 테스트")
     void addTest() {
         // arrange - 준비
         MyCalculator myCalculator = new MyCalculator();
@@ -16,6 +18,7 @@ class MyCalculatorTest {
     }
 
     @Test
+    @DisplayName("My Calculator 뺄셈 테스트")
     void minusTest() {
         // gwt
         //given 준비
@@ -27,6 +30,7 @@ class MyCalculatorTest {
     }
 
     @Test
+    @DisplayName("My Calculator 곱셈 테스트")
     void multiply() {
         MyCalculator myCalculator = new MyCalculator(2.0);
         myCalculator.multiply(2.0);
@@ -34,6 +38,7 @@ class MyCalculatorTest {
     }
 
     @Test
+    @DisplayName("My Calculator 나눗셈 테스트")
     void divide() {
         MyCalculator myCalculator = new MyCalculator(10.0);
         myCalculator.divide(2.0);
@@ -41,6 +46,7 @@ class MyCalculatorTest {
     }
 
     @Test
+    @DisplayName("My Calculator 사칙연산 테스트")
     void complicatedCalculateTest(){
         // given
         MyCalculator myCalculator = new MyCalculator(0.0);
@@ -58,6 +64,7 @@ class MyCalculatorTest {
     }
 
     @Test
+    @DisplayName("My Calculator 0으로 나누었을 때에는 ZeroDivisionException을 발생시켜야함")
     void divideZeroTest(){
         // given
         MyCalculator myCalculator = new MyCalculator(10.0);
