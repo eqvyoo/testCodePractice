@@ -4,8 +4,6 @@ import com.example.dayonetest.controller.request.SaveExamScoreRequest;
 import com.example.dayonetest.controller.response.ExamFailStudentResponse;
 import com.example.dayonetest.controller.response.ExamPassStudentResponse;
 import com.example.dayonetest.service.StudentScoreService;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

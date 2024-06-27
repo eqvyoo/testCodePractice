@@ -6,9 +6,9 @@ import com.example.dayonetest.controller.response.ExamPassStudentResponse;
 import com.example.dayonetest.model.StudentFail;
 import com.example.dayonetest.model.StudentPass;
 import com.example.dayonetest.model.StudentScore;
-import com.example.dayonetest.respository.StudentFailRepository;
-import com.example.dayonetest.respository.StudentPassRepository;
-import com.example.dayonetest.respository.StudentScoreRepository;
+import com.example.dayonetest.repository.StudentFailRepository;
+import com.example.dayonetest.repository.StudentPassRepository;
+import com.example.dayonetest.repository.StudentScoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

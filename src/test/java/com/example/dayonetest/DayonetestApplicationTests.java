@@ -1,12 +1,11 @@
 package com.example.dayonetest;
 
 import com.example.dayonetest.model.StudentScoreFixture;
-import com.example.dayonetest.respository.StudentScoreRepository;
+import com.example.dayonetest.repository.StudentScoreRepository;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 
 class DayonetestApplicationTests extends IntegrationTest{
