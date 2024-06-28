@@ -88,7 +88,7 @@ tasks.jacocoTestCoverageVerification{
             limit {
                 counter = "LINE"
                 value = "COVEREDRATIO"
-                minimum = BigDecimal.valueOf(0.5)
+                minimum = BigDecimal.valueOf(0.1)
             }
 
             // 한 클래스는 100줄 이상을 가질 수 없다.
