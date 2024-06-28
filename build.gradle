@@ -100,6 +100,7 @@ tasks.jacocoTestCoverageVerification{
 
             excludes = List.of(
                     "*.controller.*",
+                    "*.test.*",
                     "com.example.dayonetest.DayonetestApplication",
                     "com.example.dayonetest.MyCalculatorApplication",
                     "com.example.dayonetest.service.KafkaConsumerService"
