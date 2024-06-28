@@ -8,9 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SaveExamScoreRequest {
-    private String studentName;
-    private Integer korScore;
-    private Integer englishScore;
-    private Integer mathScore;
-
+  private String studentName;
+  private Integer korScore;
+  private Integer englishScore;
+  private Integer mathScore;
 }

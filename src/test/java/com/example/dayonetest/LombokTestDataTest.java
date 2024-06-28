@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class LombokTestDataTest {
-    @Test
-    public void testDatTest(){
-        TestData testData = new TestData();
-        testData.setName("yoojung");
+  @Test
+  public void testDatTest() {
+    TestData testData = new TestData();
+    testData.setName("yoojung");
 
-        Assertions.assertEquals("yoojung", testData.getName());
-    }
+    Assertions.assertEquals("yoojung", testData.getName());
+  }
 }

@@ -9,77 +9,76 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class StudentScoreServiceIntegrationTest extends IntegrationTest {
-    @Autowired
-    private StudentScoreService studentScoreService;
-    @Autowired
-    private EntityManager entityManager;
-     @Test
-    public void savedPassedStudentScoreTest(){
-         // given
-         var studentScore = StudentScoreFixture.passed();
+  @Autowired private StudentScoreService studentScoreService;
+  @Autowired private EntityManager entityManager;
 
-         // when
-         studentScoreService.saveScore(
-                 studentScore.getStudentName(),
-                 studentScore.getExam(),
-                 studentScore.getKorScore(),
-                 studentScore.getEnglishScore(),
-                 studentScore.getMathScore()
-         );
-         entityManager.flush();
-         entityManager.clear();
+  @Test
+  public void savedPassedStudentScoreTest() {
+    // given
+    var studentScore = StudentScoreFixture.passed();
 
-         // then
-         var passedStudentResponses = studentScoreService.getPassStudentsList(studentScore.getExam());
+    // when
+    studentScoreService.saveScore(
+        studentScore.getStudentName(),
+        studentScore.getExam(),
+        studentScore.getKorScore(),
+        studentScore.getEnglishScore(),
+        studentScore.getMathScore());
+    entityManager.flush();
+    entityManager.clear();
 
-         Assertions.assertEquals(1,passedStudentResponses.size());
+    // then
+    var passedStudentResponses = studentScoreService.getPassStudentsList(studentScore.getExam());
 
-         var passedStudentResponse = passedStudentResponses.get(0);
+    Assertions.assertEquals(1, passedStudentResponses.size());
 
-         var calculator = new MyCalculator(0.0);
+    var passedStudentResponse = passedStudentResponses.get(0);
 
-         Assertions.assertEquals(studentScore.getStudentName(), passedStudentResponse.getStudentName());
-         Assertions.assertEquals(
-                 calculator
-                         .add(studentScore.getKorScore().doubleValue())
-                         .add(studentScore.getEnglishScore().doubleValue())
-                         .add(studentScore.getMathScore().doubleValue())
-                         .divide(3.0)
-                         .getResult(), passedStudentResponse.getAvgScore());
-     }
-    @Test
-    public void savedFailedStudentScoreTest(){
-        // given
-        var studentScore = StudentScoreFixture.failed();
+    var calculator = new MyCalculator(0.0);
 
-        // when
-        studentScoreService.saveScore(
-                studentScore.getStudentName(),
-                studentScore.getExam(),
-                studentScore.getKorScore(),
-                studentScore.getEnglishScore(),
-                studentScore.getMathScore()
-        );
-        entityManager.flush();
-        entityManager.clear();
+    Assertions.assertEquals(studentScore.getStudentName(), passedStudentResponse.getStudentName());
+    Assertions.assertEquals(
+        calculator
+            .add(studentScore.getKorScore().doubleValue())
+            .add(studentScore.getEnglishScore().doubleValue())
+            .add(studentScore.getMathScore().doubleValue())
+            .divide(3.0)
+            .getResult(),
+        passedStudentResponse.getAvgScore());
+  }
 
-        // then
-        var failedStudentResponses = studentScoreService.getFailStudentsList(studentScore.getExam());
+  @Test
+  public void savedFailedStudentScoreTest() {
+    // given
+    var studentScore = StudentScoreFixture.failed();
 
-        Assertions.assertEquals(1,failedStudentResponses.size());
+    // when
+    studentScoreService.saveScore(
+        studentScore.getStudentName(),
+        studentScore.getExam(),
+        studentScore.getKorScore(),
+        studentScore.getEnglishScore(),
+        studentScore.getMathScore());
+    entityManager.flush();
+    entityManager.clear();
 
-        var failedStudentResponse = failedStudentResponses.get(0);
+    // then
+    var failedStudentResponses = studentScoreService.getFailStudentsList(studentScore.getExam());
 
-        var calculator = new MyCalculator(0.0);
+    Assertions.assertEquals(1, failedStudentResponses.size());
 
-        Assertions.assertEquals(studentScore.getStudentName(), failedStudentResponse.getStudentName());
-        Assertions.assertEquals(
-                calculator
-                        .add(studentScore.getKorScore().doubleValue())
-                        .add(studentScore.getEnglishScore().doubleValue())
-                        .add(studentScore.getMathScore().doubleValue())
-                        .divide(3.0)
-                        .getResult(), failedStudentResponse.getAvgScore());
-    }
+    var failedStudentResponse = failedStudentResponses.get(0);
 
+    var calculator = new MyCalculator(0.0);
+
+    Assertions.assertEquals(studentScore.getStudentName(), failedStudentResponse.getStudentName());
+    Assertions.assertEquals(
+        calculator
+            .add(studentScore.getKorScore().doubleValue())
+            .add(studentScore.getEnglishScore().doubleValue())
+            .add(studentScore.getMathScore().doubleValue())
+            .divide(3.0)
+            .getResult(),
+        failedStudentResponse.getAvgScore());
+  }
 }
