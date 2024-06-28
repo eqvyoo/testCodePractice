@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.0'
     id 'io.spring.dependency-management' version '1.1.5'
+    id 'jacoco'
 }
 
 group = 'com.example.dayonetest'
@@ -51,6 +52,57 @@ dependencies {
     testImplementation 'com.tngtech.archunit:archunit:1.1.0'
 }
 
+jacoco{
+    toolVersion = "0.8.8"
+}
+
 tasks.named('test') {
     useJUnitPlatform()
+
+    jacoco {}
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport{
+    reports{
+        xml.required = true
+        html.required = true
+        csv.required = false
+
+        xml.destination(file("build/jacoco/jacoco.xml"))
+        html.destination(file("build/jacoco/jacoco.html"))
+    }
+
+    finalizedBy(tasks.jacocoTestCoverageVerification)
+}
+
+tasks.jacocoTestCoverageVerification{
+    violationRules {
+        rule{
+            enabled = true
+            element = "CLASS"
+
+            // class별로 line coverage가 50이 넘어야한다
+            limit {
+                counter = "LINE"
+                value = "COVEREDRATIO"
+                minimum = BigDecimal.valueOf(0.5)
+            }
+
+            // 한 클래스는 100줄 이상을 가질 수 없다.
+            limit{
+                counter = "LINE"
+                value = "TOTALCOUNT"
+                maximum = BigDecimal.valueOf(100)
+            }
+
+            excludes = List.of(
+                    "*.controller.*",
+                    "com.example.dayonetest.DayonetestApplication",
+                    "com.example.dayonetest.MyCalculatorApplication",
+                    "com.example.dayonetest.service.KafkaConsumerService"
+
+            )
+        }
+    }
 }
